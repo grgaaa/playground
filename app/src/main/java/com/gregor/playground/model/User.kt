@@ -1,3 +1,6 @@
 package com.gregor.playground.model
 
-data class User(val name: String, val password: String)
+data class User(
+    val id: Long,
+    val name: String
+)
