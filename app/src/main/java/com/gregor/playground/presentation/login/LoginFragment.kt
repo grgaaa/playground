@@ -49,7 +49,7 @@ class LoginFragment : Fragment() {
                 binding.passwordInput.text.toString()
             )
                 .observe(viewLifecycleOwner) { user ->
-                    if (TextUtils.isEmpty(user.data?.name)) {
+                    if (user.isError == true) {
                         onInvalidLogin()
                     } else {
                         Toast.makeText(context, "Hello ${user.data?.name}!", Toast.LENGTH_LONG).show()

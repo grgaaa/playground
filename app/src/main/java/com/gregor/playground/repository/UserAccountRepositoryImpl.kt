@@ -3,8 +3,8 @@ package com.gregor.playground.repository
 import com.gregor.playground.exceptions.RepositoryException
 import com.gregor.playground.model.User
 import com.gregor.playground.repository.dto.RepoDTO
+import com.gregor.playground.repository.dto.Source
 import com.gregor.playground.service.NetworkService
-
 import javax.inject.Inject
 
 class UserAccountRepositoryImpl @Inject constructor(
@@ -15,9 +15,12 @@ class UserAccountRepositoryImpl @Inject constructor(
         val userResponse = networkService.login(userName, password).execute()
 
         return if (userResponse.isSuccessful) {
-            RepoDTO(userResponse.body()!!)
+            RepoDTO(userResponse.body(), source = Source.REMOTE_SERVICE)
         } else {
-            RepoDTO(null, true, RepositoryException(RepositoryException.LOGIN_ERROR))
+            RepoDTO(null,
+                true,
+                RepositoryException(RepositoryException.LOGIN_ERROR),
+                source = Source.REMOTE_SERVICE)
         }
     }
 }

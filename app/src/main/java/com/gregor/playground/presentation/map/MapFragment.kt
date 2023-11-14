@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.gregor.playground.R
 import com.gregor.playground.databinding.FragmentMapBinding
+import com.gregor.playground.presentation.login.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -28,6 +30,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private val viewModel: MapViewModel by viewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
